@@ -2,5 +2,5 @@ class JokeEntity {
   late String question;
   late String answer;
 
-  JokeEntity(this.question, this.answer);
+  JokeEntity({required this.question, required this.answer});
 }
