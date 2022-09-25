@@ -6,8 +6,8 @@ abstract class GetJokeDataSource {
   Future<List<JokeModel>> getJoke(String question, String answer);
 }
 
-class GetJokeRepoImpl implements GetJokeDataSource{
-  GetJokeRepoImpl();
+class GetJokeDatasourceImpl implements GetJokeDataSource{
+  GetJokeDatasourceImpl();
 
   @override
   Future<List<JokeModel>> getJoke(String question, String answer) async {
