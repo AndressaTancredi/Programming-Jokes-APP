@@ -10,6 +10,6 @@ class GetJokeImpl implements GetJokeUC {
 
   @override
   Future<Either<Exception, List<JokeEntity>>> call(String question, String answer) {
-    return getJokeRepo(question, answer);
+    return getJokeRepo.getJoke(question, answer);
   }
 }
