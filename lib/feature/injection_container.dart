@@ -4,17 +4,16 @@ import 'package:programming_jokes_app/feature/domain/repository/get_joke_repo.da
 import 'package:programming_jokes_app/feature/domain/usecases/get_joke_uc.dart';
 
 import 'data/repository/get_joke_repo_impl.dart';
-import 'domain/usecase_impl/get_joke_impl.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
   // DataSource
-  sl.registerLazySingleton<GetJokeDataSource>(() => GetJokeDatasourceImpl());
+  sl.registerLazySingleton<GetJokeDataSource>(() => GetJokeDataSource());
 
   // Repositories
   sl.registerLazySingleton<GetJokeRepo>(() => GetJokeRepoImpl(remoteDataSource: sl()));
 
   // UseCase
-  sl.registerLazySingleton<GetJokeUC>(() => GetJokeImpl(sl()));
+  sl.registerLazySingleton<GetJokeUseCase>(() => GetJokeUseCase(sl()));
 }

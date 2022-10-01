@@ -2,15 +2,10 @@ import 'dart:convert';
 import '../models/joke_model.dart';
 import 'package:http/http.dart' as http;
 
-abstract class GetJokeDataSource {
-  Future<List<JokeModel>> getJoke(String question, String answer);
-}
+class GetJokeDataSource{
+  GetJokeDataSource();
 
-class GetJokeDatasourceImpl implements GetJokeDataSource{
-  GetJokeDatasourceImpl();
-
-  @override
-  Future<List<JokeModel>> getJoke(String question, String answer) async {
+  Future<List<JokeModel>> getJokes() async {
     final response = await http.get(
       Uri.https(
           'official-joke-api.appspot.com',
@@ -22,7 +17,7 @@ class GetJokeDatasourceImpl implements GetJokeDataSource{
       return jokeList.map((joke) =>
           JokeModel.fromJson(joke as Map<String, dynamic>)).toList();
     } else {
-      throw Exception("Server exception getJoke failed");
+      throw Exception("getJokes failed due to ${response.reasonPhrase}");
     }
   }
 }

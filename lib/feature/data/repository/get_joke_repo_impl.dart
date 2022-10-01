@@ -9,13 +9,13 @@ class GetJokeRepoImpl implements GetJokeRepo {
   GetJokeRepoImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Exception, List<JokeEntity>>> getJoke(String question, String answer) async {
-    final remoteGetJoke = await remoteDataSource.getJoke(question, answer);
+  Future<Either<Exception, List<JokeEntity>>> getJokes() async {
+    final remoteGetJokes = await remoteDataSource.getJokes();
 
-    if (remoteGetJoke.isNotEmpty) {
-      return Right(remoteGetJoke);
-    } else {
-      return Left(Exception("error getJoke"));
+    try {
+      return Right(remoteGetJokes);
+    } on Exception {
+      return Left(Exception("getJokes failed"));
     }
   }
 }
